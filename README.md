@@ -1,1 +1,1 @@
-# ocp-open-smartnic
+# OCP - TAP - Open Deterministic Ethernet Interface (ODEI)
