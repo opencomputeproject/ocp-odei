@@ -1,6 +1,6 @@
-# OCP - TAP - Open Deterministic Ethernet Interface (ODEI)
+# OCP - Open Atomic Ethernet (OAE)
 
-This repository serves as a collection of LaTeX documents and their compiled PDFs. The first document in this collection is **Ethernet_boggs**, a recreation of the foundational Ethernet paper.
+This repository serves as a collection of LaTeX documents and their compiled PDFs. The first document in this collection is **Metcalfe_Boggs**, a recreation of the foundational Ethernet paper.
 
 ## Getting Started
 
@@ -12,7 +12,7 @@ To generate PDFs from the LaTeX source files, run the following script in the pa
 
 This script will compile each `.tex` file and produce the corresponding `.pdf` output.
 
-## About `Metcalfe-Boggs``
+## About `Metcalfe-Boggs`
 
 The `Metcalfe-Boggs` document is a LaTeX recreation of the influential paper:
 
