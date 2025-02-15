@@ -1,0 +1,78 @@
+% This is the TEST file in the Figures folder.  
+
+\documentclass[11pt]{amsart}
+\usepackage{geometry}                % See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   % ... or a4paper or a5paper or ... 
+%\geometry{landscape}                % Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{epstopdf}
+\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
+
+
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest} 
+\usepackage{bytefield}
+
+
+\title{ \vspace{-80pt} Testing the Ethernet Figures }
+\author{Test of Ethernet Figures in this folder}
+%\date{}                                           % Activate to display a given date or no date
+
+\begin{document}
+
+\maketitle
+\vspace{-20pt}
+
+\begin{figure}[h!]. \centering  \includegraphics[trim =0mm 0mm 0mm 0mm, clip, width=10cm]{Ethernet-Table-0.png}    \caption{Ethernet Table 0} \end{figure}
+
+\input{Ethernet-Table-0.tex}
+
+\section*{FIGURE 1} 
+
+\newpage
+
+\begin{figure}[h!]. \centering  \includegraphics[trim =0mm 0mm 0mm 0mm, clip, width=6cm]{Ethernet-Fig-1.png}    \caption{Ethernet Fig-1 PNG} \end{figure}
+
+\input{Ethernet-Fig-1-tikz.tex} 
+
+\newpage
+\section*{FIGURE 2} 
+
+\begin{figure}[h!]. \centering  \includegraphics[trim =0mm 0mm 0mm 0mm, clip, width=6cm]{Ethernet-Fig-2.png}    \caption{Ethernet Fig-2 PNG} \end{figure}
+
+\input{Ethernet-Fig-2-registers.tex}
+
+\input{Ethernet-Fig-2-tikz.tex} 
+
+\newpage
+\section*{FIGURE 3} 
+
+\begin{figure}[h!]. \centering  \includegraphics[trim =0mm 0mm 0mm 0mm, clip, width=8cm]{Ethernet-Fig-3.png}    \caption{Ethernet-Fig-3.png} \end{figure}
+
+\input{Ethernet-Fig-3-tikz.tex} 
+
+\newpage
+\section*{FIGURE 4} 
+
+\begin{figure}[h!]. \centering  \includegraphics[trim =0mm 0mm 0mm 0mm, clip, width=6cm]{Ethernet-Fig-4.png}    \caption{Ethernet-Fig-4.png} \end{figure}
+
+\input{Ethernet-Fig-4-registers.tex}
+
+%\input{Ethernet-Fig-4-tikz.tex} 
+ 
+ \section*{TABLE 1}
+
+ 
+\include{Ethernet-Table-1.tex}
+
+\include{Ethernet-Table-1-Graph.tex}
+
+\end{document}
+  
+ 
+
+\end{document}  

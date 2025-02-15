@@ -1,0 +1,125 @@
+% This is what ChatGPT came up with  
+%\begin{figure}[ht]
+%  \centering
+%  % Shrink text slightly and widen the boxes
+%  {\scriptsize
+%    \begin{bytefield}[bitwidth=2em]{32}
+%      % Label bit columns 0-15 and 16-31
+%      \bitheader{0-15,16-31} \\
+%
+%      % First row: 16 bits for Destination, 16 bits for Source
+%      \bitbox{16}{\textbf{Destination}} & \bitbox{16}{\textbf{Source}} \\[0.5em]
+%
+%      % Next rows occupy the entire 32-bit width
+%      \bitbox{32}{\textbf{Packet Type}} \\[0.5em]
+%      \bitbox{32}{\textbf{Sequence Number}} \\[0.5em]
+%      \bitbox{32}{\textbf{Length (in words)}} \\[0.5em]
+%
+%      % Annotate “Data Packet Only” on the right edge
+%      \begin{rightwordgroup}{\scriptsize Data Packet Only}
+%        \bitbox{32}{\textbf{Data (words)}}
+%      \end{rightwordgroup}\\[0.5em]
+%
+%      \bitbox{32}{\textbf{Software Checksum}}
+%    \end{bytefield}
+%  }
+%  \caption{EFTP packet layout using the \texttt{bytefield} package.}
+%  \label{fig:eftp-packet}
+%\end{figure}
+%
+%\begin{figure}[ht]
+%  \centering
+%  % A minipage that takes half the text width
+%  \begin{minipage}{0.5\textwidth}
+%    \centering
+%    % Shrink text and reduce the bitwidth
+%    {\scriptsize
+%      \begin{bytefield}[bitwidth=1em]{32}
+%        \bitheader{0-15,16-31} \\
+%        \bitbox{16}{\textbf{Destination}} & \bitbox{16}{\textbf{Source}} \\[0.5em]
+%        \bitbox{32}{\textbf{Packet Type}} \\[0.5em]
+%        \bitbox{32}{\textbf{Sequence Number}} \\[0.5em]
+%        \bitbox{32}{\textbf{Length (in words)}} \\[0.5em]
+%        \begin{rightwordgroup}{\scriptsize Data Packet Only}
+%          \bitbox{32}{\textbf{Data (words)}}
+%        \end{rightwordgroup}\\[0.5em]
+%        \bitbox{32}{\textbf{Software Checksum}}
+%      \end{bytefield}
+%    }
+%    \caption{EFTP packet layout (compressed to half the page).}
+%    \label{fig:eftp-packet}
+%  \end{minipage}
+%\end{figure}
+
+
+%\begin{figure}[ht]
+%  \centering
+%  \begin{minipage}{0.5\textwidth}
+%    \centering
+%    % Slightly smaller text, and each row is 16 bits total.
+%    {\scriptsize
+%      \begin{bytefield}[bitwidth=2em]{16}
+%        % Show the bit headers for 0--7 and 8--15
+%        \bitheader{0-7,8-15}\\
+%        % First row has two 8-bit fields side by side
+%        \bitbox{8}{\textbf{Destination}} & \bitbox{8}{\textbf{Source}} \\[0.5em]
+%
+%        % Each subsequent field spans the full 16 bits
+%        \bitbox{16}{\textbf{Packet Type}}         \\[0.5em]
+%        \bitbox{16}{\textbf{Sequence Number}}     \\[0.5em]
+%        \bitbox{16}{\textbf{Length (in words)}}   \\[0.5em]
+%
+%        % Rightwordgroup annotation for "Data Packet Only"
+%        \begin{rightwordgroup}{\scriptsize Data Packet Only}
+%          \bitbox{16}{\textbf{Data (words)}}
+%        \end{rightwordgroup}\\[0.5em]
+%
+%        \bitbox{16}{\textbf{Software Checksum}}
+%      \end{bytefield}
+%    }
+%    \caption{EFTP packet layout in a 16-bit‐wide diagram.}
+%    \label{fig:eftp-packet-16bit}
+%  \end{minipage}
+%\end{figure}
+
+
+
+\begin{figure}[ht]
+  \centering
+  \begin{minipage}{0.5\textwidth}
+    \centering
+    {\scriptsize
+      % 16 bits wide
+      \begin{bytefield}[bitwidth=1.5em]{16}
+        \bitheader{0-7,8-15} \\
+
+        \bitbox{8}{\textbf{Destination}} & \bitbox{8}{\textbf{Source}} \\[0.6em]
+        \bitbox{16}{\textbf{Packet Type}}         \\[0.6em]
+        \bitbox{16}{\textbf{Sequence Number}}     \\[0.6em]
+        \bitbox{16}{\textbf{Length (in words)}}   \\[0.6em]
+
+        % -- Data section with a wavy line to indicate variable length --
+        \begin{rightwordgroup}{\footnotesize Data Packet Only}
+          % First Data Word
+          \bitbox{16}{\textbf{Data Word 1}} \\[-0.2em]
+
+          % A 'wavy' row to show that many words can follow
+          % Use \wordbox with partial lines around it
+          \wordbox[lrt]{1}{%
+            \centering
+            \raisebox{-0.5ex}{\Huge$\sim\!\sim\!\sim$}%
+          }\\[-0.2em]
+
+          % Last Data Word shown
+          \bitbox{16}{\textbf{Data Word N}} \\
+        \end{rightwordgroup}\\[0.6em]
+
+        \bitbox{16}{\textbf{Software Checksum}}
+
+      \end{bytefield}
+    }
+    \caption{EFTP packet layout with a variable‐length “Data” field.}
+    \label{fig:eftp-variable-length}
+  \end{minipage}
+\end{figure}
+

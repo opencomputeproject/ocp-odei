@@ -1,0 +1,30 @@
+%!TEX root =Test-Ethernet-Figures.tex
+% This is what ChatGPT came up with  
+\begin{figure}[ht]
+\centering
+% Make boxes wider by increasing bitwidth; reduce text size by \scriptsize
+{\scriptsize
+  \begin{bytefield}[bitwidth=2em]{32}
+    \bitheader{0-7,8-15,16-23,24-31} \\
+    \bitbox{8}{\textbf{SYNC}} &
+    \bitbox{8}{\textbf{Dest.\ Addr.}} &
+    \bitbox{8}{\textbf{Source Addr.}} &
+    \bitbox{8}{\textbf{Type/Len}}
+  \end{bytefield}
+
+  \vspace{0.5em}
+
+  \begin{bytefield}[bitwidth=2em]{32}
+    \bitheader{0-31} \\
+    \bitbox{32}{\textbf{Data (4000 bits total)}}
+  \end{bytefield}
+
+  \vspace{0.5em}
+
+  \begin{bytefield}[bitwidth=2em]{16}
+    \bitheader{0-15}\\
+    \bitbox{16}{\textbf{Checksum}}
+  \end{bytefield}
+}
+\caption{Ethernet packet layout with wider boxes and smaller text.}
+\end{figure}

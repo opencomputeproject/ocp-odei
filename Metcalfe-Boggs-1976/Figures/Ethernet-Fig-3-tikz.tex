@@ -1,0 +1,205 @@
+% This is what ChatGPT came up with for Figure 3 in the Metcalfe + Boggs Paper
+%\begin{center}
+%\begin{tikzpicture}[
+%    node distance=2cm,
+%    % A couple of convenient style aliases:
+%    block/.style = {rectangle, draw, rounded corners, align=center, minimum width=3cm, minimum height=1cm},
+%    decision/.style = {diamond, draw, aspect=2, align=center, inner sep=0pt},
+%    line/.style = {->, thick}
+%]
+%
+%% --- NODES ---
+%\node[block]               (init) {Zero load\\estimate for new packet};
+%\node[decision, below of=init] (overflow) {Has load\\estimate overflowed?};
+%\node[block, right of=overflow, xshift=3cm] (error) {Error};
+%\node[block, below of=overflow]    (rand) {Generate\\random number};
+%\node[block, below of=rand]        (weight) {Weight by\\load estimate};
+%\node[block, below of=weight]      (count) {Count down\\weighted random number};
+%\node[block, below of=count]       (transmit) {Transmit when\\ether silent};
+%\node[block, below of=transmit]    (done) {Done};
+%
+%% For the “Increase load estimate” block on the left,
+%% we place it relative to (rand). 
+%\node[block, left of=rand, xshift=-3cm] (increase) {Increase\\load estimate};
+%
+%% --- ARROWS ---
+%% Straight down path
+%\draw [line] (init) -- (overflow);
+%\draw [line] (overflow) -- node [near start, anchor=west] {No} (rand);
+%\draw [line] (rand) -- (weight);
+%\draw [line] (weight) -- (count);
+%\draw [line] (count) -- (transmit);
+%\draw [line] (transmit) -- node [midway, right] {OK} (done);
+%
+%% Overflow -> Error
+%\draw [line] (overflow) -- node [near start, anchor=south] {Yes} (error);
+%
+%% Increase load estimate arrow
+%\draw [line] (increase) |- (rand);
+%
+%% Extra collision/timeout arrows from “Transmit” if you need them:
+%%\draw [line] (transmit) -| node [near start, above] {Collision} (increase);
+%%\draw [line] (transmit) -| node [near start, below] {Timeout} (error);
+%
+%\end{tikzpicture}
+%\end{center}
+
+%\begin{figure}[ht]
+%\centering
+%\begin{tikzpicture}[
+%    node distance=2.2cm,  % controls vertical/horizontal spacing
+%    font=\small,
+%    % Styles for nodes:
+%    block/.style   ={rectangle, draw, rounded corners, align=center, 
+%                     minimum width=3cm, minimum height=1cm},
+%    decision/.style={diamond, draw, aspect=2, align=center, inner sep=0pt},
+%    % Style for arrows:
+%    line/.style    ={->, thick},
+%]
+%
+%% --- NODES ---
+%\node[block]                (init)    {Zero load estimate\\for new packet};
+%\node[decision, below of=init] (overflow) {Has load estimate\\overflowed?};
+%\node[block, right of=overflow, xshift=3cm] (error) {Error};
+%\node[block, below of=overflow] (rand) {Generate\\random number};
+%\node[block, below of=rand]   (weight) {Weight by\\load estimate};
+%\node[block, below of=weight] (count)  {Count down\\weighted random number};
+%\node[block, below of=count]  (transmit) {Transmit when\\ether silent};
+%\node[block, below of=transmit] (done) {Done};
+%
+%% "Increase load estimate" is off to the left of the decision node:
+%\node[block, left of=overflow, xshift=-3.5cm] (increase) {Increase\\load estimate};
+%
+%% --- ARROWS ---
+%% Top-down main flow
+%\draw[line] (init) -- (overflow);
+%\draw[line] (overflow) -- node[midway, anchor=west] {No} (rand);
+%\draw[line] (rand) -- (weight);
+%\draw[line] (weight) -- (count);
+%\draw[line] (count) -- (transmit);
+%\draw[line] (transmit) -- node[midway, anchor=west] {OK} (done);
+%
+%% Overflow -> Error
+%\draw[line] (overflow) -- node[midway, anchor=south] {Yes} (error);
+%
+%% Transmit -> Increase load estimate (Collision)
+%\draw[line] (transmit) -| node[pos=0.25, above] {Collision} (increase);
+%
+%% Increase load estimate -> Overflow decision
+%\draw[line] (increase) -- (overflow);
+%
+%% Transmit -> Error (Timeout)
+%\draw[line] (transmit) -- node[midway, anchor=east] {Timeout} (error);
+%
+%\end{tikzpicture}
+%\caption{Collision Control Algorithm Flowchart}
+%\label{fig:collision-control}
+%\end{figure}
+
+%\begin{figure}[ht]
+%\centering
+%\begin{tikzpicture}[
+%    node distance=2.2cm,    % controls spacing
+%    font=\small,           % slightly smaller text
+%    % Node styles:
+%    block/.style={rectangle, draw, rounded corners, align=center,
+%                  minimum width=3cm, minimum height=1cm},
+%    decision/.style={diamond, draw, aspect=2, align=center, inner sep=0pt},
+%    % Arrow style:
+%    line/.style={->, thick}
+%]
+%
+%% --- NODES (ALL-CAPS TEXT) ---
+%\node[block]                   (init)    {ZERO LOAD ESTIMATE\\FOR NEW PACKET};
+%\node[decision, below of=init] (overflow){HAS LOAD ESTIMATE\\OVERFLOWED?};
+%\node[block, right of=overflow, xshift=3cm] (error)   {ERROR};
+%\node[block, below of=overflow] (rand)   {GENERATE RANDOM NUMBER};
+%\node[block, below of=rand]   (weight)   {WEIGHT BY LOAD ESTIMATE};
+%\node[block, below of=weight] (count)    {COUNT DOWN\\WEIGHTED RANDOM NUMBER};
+%\node[block, below of=count]  (transmit) {TRANSMIT WHEN\\ETHER SILENT};
+%\node[block, below of=transmit] (done)   {DONE};
+%
+%% "INCREASE LOAD ESTIMATE" on the left
+%\node[block, left of=overflow, xshift=-3.5cm] (increase)
+%      {INCREASE LOAD\\ESTIMATE};
+%
+%% --- ARROWS ---
+%% Main top-down path
+%\draw[line] (init) -- (overflow);
+%\draw[line] (overflow) -- node[midway, anchor=west] {NO} (rand);
+%\draw[line] (rand) -- (weight);
+%\draw[line] (weight) -- (count);
+%\draw[line] (count) -- (transmit);
+%\draw[line] (transmit) -- node[midway, anchor=west] {OK} (done);
+%
+%% Overflow -> Error
+%\draw[line] (overflow) -- node[midway, anchor=south] {YES} (error);
+%
+%% Collision path: arrow from transmit to increase load (L-shaped)
+%\draw[line] (transmit.west) -| node[pos=0.25, anchor=south] {COLLISION} (increase.south);
+%
+%% Increase load -> back to Overflow
+%\draw[line] (increase) -- (overflow);
+%
+%% Timeout path: arrow from transmit to error (L-shaped, goes right then up)
+%\draw[line] (transmit.east) -- ++(1.5,0) |- node[pos=0.25, anchor=south] {TIMEOUT} (error.south);
+%
+%\end{tikzpicture}
+%\caption{Collision Control Algorithm Flowchart (All-Caps Text)}
+%\end{figure}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[
+    node distance=2.2cm,
+    font=\footnotesize,  % One size smaller than normal
+    % Node styles:
+    block/.style={rectangle, draw, rounded corners, align=center,
+                  minimum width=3cm, minimum height=1cm},
+    decision/.style={diamond, draw, aspect=2, align=center, inner sep=0pt},
+    % Arrow style:
+    line/.style={->, thick},
+]
+% --- NODES (ALL CAPS) ---
+\node[block]                  (init)    {ZERO LOAD ESTIMATE\\FOR NEW PACKET};
+\node[decision, below of=init](overflow){HAS LOAD ESTIMATE\\OVERFLOWED?};
+\node[block, right of=overflow, xshift=3cm] (error) {ERROR};
+\node[block, below of=overflow] (rand)   {GENERATE RANDOM NUMBER};
+\node[block, below of=rand]   (weight)   {WEIGHT BY LOAD ESTIMATE};
+\node[block, below of=weight] (count)    {COUNT DOWN\\WEIGHTED RANDOM NUMBER};
+\node[block, below of=count]  (transmit) {TRANSMIT WHEN\\ETHER SILENT};
+\node[block, below of=transmit] (done)   {DONE};
+
+% "INCREASE LOAD ESTIMATE" on the left
+\node[block, left of=overflow, xshift=-3.5cm] (increase)
+      {INCREASE LOAD\\ESTIMATE};
+
+% --- ARROWS ---
+% Main top-down path
+\draw[line] (init) -- (overflow);
+\draw[line] (overflow) -- node[midway, anchor=west] {NO} (rand);
+\draw[line] (rand) -- (weight);
+\draw[line] (weight) -- (count);
+\draw[line] (count) -- (transmit);
+\draw[line] (transmit) -- node[midway, anchor=west] {OK} (done);
+
+% Overflow -> Error
+\draw[line] (overflow) -- node[midway, anchor=south] {YES} (error);
+
+% Collision path: from Transmit to Increase
+\draw[line] (transmit.west) -| node[pos=0.25, anchor=south]{COLLISION} (increase.south);
+
+% Increase -> back to Overflow
+\draw[line] (increase) -- (overflow);
+
+% Timeout path: L-shaped arrow from bottom of Transmit 
+% straight down, then right & up into the bottom of Error
+\draw[line] (transmit.south) -- ++(0, -1.5)
+         node[midway, anchor=east]{TIMEOUT} -| (error.south);
+
+\end{tikzpicture}
+\caption{Collision Control Algorithm Flowchart}
+\end{figure}
+
+
+

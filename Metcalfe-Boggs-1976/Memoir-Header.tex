@@ -1,0 +1,138 @@
+% -------------------------------------------------------------------
+% Unified Memoir-based header
+% -------------------------------------------------------------------
+\documentclass[twoside,openany,twocolumn,10pt]{memoir}
+
+% ------------------ MARGINS / PAGE GEOMETRY ------------------------
+% Option A: Use Memoir’s built-in geometry commands (uncomment & adjust):
+% \settrimmedsize{11in}{8.5in}{*}
+% \settypeblocksize{9in}{6.5in}{*}
+
+% Option B: Use geometry package with a 1in margin:
+\usepackage[margin=1in]{geometry}
+
+% (Removed \usepackage{fullpage} because it overlaps with geometry.)
+
+% ------------------ FONTS & BASIC PACKAGES -------------------------
+\usepackage[T1]{fontenc}          % Ensure good font encoding
+\usepackage{inconsolata}          % Code-like font
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}          % For pseudo-code (if desired)
+\usepackage{fmtcount}             % For question counters (fmtcount usage)
+\usepackage{etoolbox}             % Conditionals, etc.
+
+% ------------------ GRAPHICS & COLOR -------------------------------
+\usepackage{graphicx}             % Insert images
+\usepackage{wrapfig}              % Wrap text around figures
+\usepackage{xcolor}               % Extended color support
+\usepackage{colortbl}             % Color in tables
+\usepackage{rotating}             % Rotate table/fig if needed
+\usepackage{bytefield}            % For bitfield diagrams
+
+% ------------------ MICRO-TYPING -----------------------------------
+\usepackage{microtype}            % Improves text layout
+
+% ------------------ CHAPTER STYLE (MEMOIR) --------------------------
+\chapterstyle{bianchi}
+\definecolor{ared}{rgb}{0.647,0.129,0.149}
+\renewcommand\colorchapnum{\color{ared}}
+\renewcommand\colorchaptitle{\color{ared}}
+
+% ------------------ HEADERS/FOOTERS & PAGENOTES --------------------
+\usepackage{lastpage}
+\makepagestyle{plain}
+\makeevenfoot{plain}{\today}{DÆDÆLUS}{Page \thepage\ of \pageref{LastPage}}
+\makeoddfoot{plain}{\today}{DÆDÆLUS}{Page \thepage\ of \pageref{LastPage}}
+
+\usepackage{endnotes}
+\usepackage{pagenote}
+\makepagenote
+\renewcommand*{\notedivision}{\section*{\notesname\ to chapter~\thechapter}}
+\renewcommand*{\pagenotesubhead}[2]{}
+
+% ------------------ SUBFIG / SUBFILES (if needed) -------------------
+\usepackage{subfig}        % For sub-figures (pick EITHER subfig OR subcaption)
+\usepackage{subfiles}      % If you split document into subfiles
+
+% If you want advanced caption control, you could also do:
+% \usepackage{caption}
+% but Memoir itself has good caption handling, so usually not necessary.
+
+% ------------------ CUSTOM QUESTION/ANSWER ENVIRONMENTS ------------
+\newcounter{qctr}
+\setcounter{qctr}{0}
+
+\newlistof{listofquestions}{loq}{\Large List of Questions \normalsize}
+\newlistentry[section]{examplecounter}{loq}{0}
+
+\newcommand{\question}[1]{%
+  \stepcounter{qctr}%
+  \vspace{2pt}\noindent
+  \rule{0.5\columnwidth}{0.5pt}\\
+  \noindent
+  \phantomsection%
+  \textbf{[Q\decimal{qctr}]}%
+  \addcontentsline{loq}{section}{Q\protect\numberline{\theqctr}{#1}}%
+}
+
+\newcommand{\answer}{%
+  \vspace{5pt}\noindent
+  \textbf{[A\decimal{qctr}] }%
+}
+
+\newcommand{\statement}{%
+  \vspace{5pt}\noindent
+  \textbf{[S\decimal{qctr}] Statement: }%
+}
+
+\newcommand{\insight}{%
+  \vspace{5pt}\noindent
+  \textbf{[A\decimal{qctr} Insight: ]}%
+}
+
+% ------------------ TITLE/AUTHOR METADATA ---------------------------
+\title{\fontfamily{phv}\selectfont{\Huge{\bfseries{FAQ \\  
+   \vspace{10 pt}\huge{Frequently Asked Questions}}}}}
+
+\author{\fontfamily{phv}\selectfont{\Large{\bfseries{Confidential: $\mid$}}}}
+\date{\today}
+
+% ------------------------------------------------------------------- ADDED TO get blackboard font
+\usepackage{amsmath}   % Not strictly necessary just for \mathbb, but often used anyway
+\usepackage{amssymb}   % For \mathbb and other AMS symbols
+
+
+% STUFF FROM MAIN FILE NOT NEEDED HERE 
+
+%\usepackage{amsmath}
+%\usepackage{braket}
+%\usepackage{footmisc}
+%\usepackage{graphicx}
+%\usepackage{dsfont} 
+%\setlength{\beforechapskip}{-6.0pc}	% Reduces the large spacing before chapter headings -this command makes it bigger,  not smaller.
+
+\usepackage{multicol}
+%\usepackage{lipsum}
+
+\usepackage{pgfplots} % For plotting
+\pgfplotsset{compat=1.17}
+
+
+% ------------------ HYPERREF (ALWAYS LAST) --------------------------
+\usepackage[
+  colorlinks=true,
+  linkcolor=blue,
+  citecolor=green,
+  urlcolor=blue
+]{hyperref}
+
+
+% -------------------------------------------------------------------
+%
+% End of NewHeader.tex. Your main .tex file can do:
+%    \input{NewHeader} 
+%    \begin{document}
+%    \maketitle
+%    ...
+%    \end{document}
+% -------------------------------------------------------------------
